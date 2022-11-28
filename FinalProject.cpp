@@ -20,7 +20,13 @@ class account
     private:
         string name;
         int accnum;
+        string address;
+        int phone;
+        bool record;
     public:
+        account();
+        void makepawn();
+
 //hi cluadia part 2
 };
 class Pawn
@@ -28,19 +34,32 @@ class Pawn
     private:
         int owner;
         int pawnid;
+        double interest;
         double balance;
         double monthlypayment;
         bool status;
     public:
+        Pawn();
+        void intdayinc();
+        void numdays();
         void paypayment();
         void forfeitpawn();
 
 };
 class Jewelry: public Pawn
 {
-
+    private:
+        string material;
+        double weight;
+        string design;
+    public:
+        Jewelry();
 };
-class electronic: public Pawn
+class Electronic: public Pawn
 {
-
+    private:
+        double timeusage;
+        string type;
+    public:
+        Electronic();
 };
