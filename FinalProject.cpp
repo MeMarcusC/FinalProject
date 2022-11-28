@@ -18,21 +18,22 @@ A user manual must be written with screenshots to describe its functionality to 
 class account
 {
     private:
-    string name;
-    int pawnnnum;
+        string name;
+        int accnum;
     public:
-
+//hi cluadia
 };
 class Pawn
 {
     private:
+        int owner;
         int pawnid;
         double balance;
         double monthlypayment;
         bool status;
     public:
-    void paypayment();
-    void forfeitpawn();
+        void paypayment();
+        void forfeitpawn();
 
 };
 class Jewelry: public Pawn
