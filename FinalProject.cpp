@@ -27,7 +27,8 @@ class Account
         Account(string nm, int acc, string add, int ph, bool rec);
         void makepawn(Account A );
         int getid();
-        string gettype(int T);
+        string gettypeE(int T);
+        string gettypeJ(int T);
 };
 class Pawn
 {
@@ -40,11 +41,12 @@ class Pawn
         double monthlypayment;
         bool status;
     public:
-        Pawn();
-        void intdayinc();
-        void numdays();
-        void paypayment();
-        void forfeitpawn();
+        Pawn();// pawn constructor
+        void intdayinc();// Increase of interest of item if data passes 30 days of pawn
+        void numdays();//This method will change the date to all items.
+        void paypayment();// Pay payment to one item and remove from balance
+        void forfeitpawn();// cancel the item
+        void changestatus();//Change the status (paid or in continuation)
 
 };
 class Jewelry: public Pawn
@@ -80,7 +82,7 @@ int Account::getid()
     return id;
 }
 
-string Account::gettype(int T)
+string Account::gettypeE(int T)
 {
     string type;
     if (T == 1)
@@ -140,26 +142,19 @@ void Account::makepawn(Account A)
         cout<<"\n1) Mobile Phone\n2) Computer\n3) Television\n4) Kitchen Appliance\n5) Security Appliance\n6) Network Tool\n7) Entertainment\n";
         cout<<"Type: ";
         cin>>ty;
-        type = A.gettype(ty);
+        type = A.gettypeE(ty);
         cout<<"Please enter the Time Usage of the Item: ";
         cin>>timeusage;
+        cout<<"Please enter the worth of the item: ";
+        cin>>worth;
 
     }
     else if (ans == 2)
     {
 
     }
-    cout<<"Please enter the worth of the item: ";
-    cin>>worth;
-    if (ans == 1)
-    {
+
    
-
-    }
-    else if (ans == 2)
-    {
-
-    }
     double interest;
     double balance;
     double monthlypayment;
