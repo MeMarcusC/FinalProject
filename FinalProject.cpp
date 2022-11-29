@@ -44,9 +44,18 @@ class Pawn
         Pawn();// pawn constructor
         void intdayinc();// Increase of interest of item if data passes 30 days of pawn
         void numdays();//This method will change the date to all items.
-        void paypayment();// Pay payment to one item and remove from balance
-        void forfeitpawn();// cancel the item
-        void changestatus();//Change the status (paid or in continuation)
+        void paypayment() // Pay payment to one item and remove from balance, claudia 
+        {
+            double pp;
+            cout<<"Please Enter How much you are going to pay."<<endl;
+            cin>>pp;
+            balance=balance-pp;
+        }
+        void changestatus()//Change the status (paid or in continuation) 
+        {
+            balance=0;
+            status=false;
+        }
 
 };
 class Jewelry: public Pawn
