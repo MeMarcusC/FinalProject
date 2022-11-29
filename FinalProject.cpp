@@ -27,6 +27,8 @@ class Account
         Account(string nm, int acc, string add, int ph, bool rec);
         void makepawn(Account A );
         int getid();
+        void CheckRecord();//
+
         string gettypeE(int T);
         string gettypeJ(int T);
 };
@@ -71,6 +73,7 @@ class Jewelry: public Pawn
             weight=w;
             design=d; 
         }
+
 };
 class Electronic: public Pawn
 {
