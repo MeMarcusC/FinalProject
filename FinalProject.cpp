@@ -151,4 +151,17 @@ void Account::makepawn(Account A)
     }
     cout<<"Please enter the worth of the item: ";
     cin>>worth;
+    if (ans == 1)
+    {
+   
+
+    }
+    else if (ans == 2)
+    {
+
+    }
+    double interest;
+    double balance;
+    double monthlypayment;
+    bool status;
 }
