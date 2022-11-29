@@ -54,7 +54,12 @@ class Jewelry: public Pawn
         double weight;
         string design;
     public:
-        Jewelry();
+        Jewelry(string m, double w, string d)
+        {
+            material=m;
+            weight=w;
+            design=d; 
+        }
 };
 class Electronic: public Pawn
 {
@@ -62,7 +67,11 @@ class Electronic: public Pawn
         double timeusage;
         string type;
     public:
-        Electronic();
+        Electronic(double t, string typ)
+        {
+            timeusage=t;
+            type=typ;
+        }
 };
 Account::Account(string nm, int acc, string add, int ph, bool rec)
 {
