@@ -18,6 +18,9 @@ A user manual must be written with screenshots to describe its functionality to 
 class Account
 {
     private:
+        int yeara;
+        int daya;
+        int montha;
         string name;
         int accnum;
         string address;
@@ -26,15 +29,93 @@ class Account
     public:
         Account(string nm, int acc, string add, int ph, bool rec);
         void makepawn(Account A );
-        int getid();
+        int getid()
+        {       
+            int id;
+            id = accnum;
+            return id;
+        }
         void CheckRecord();//
-
-        string gettypeE(int T);
-        string gettypeJ(int T);
+        void numdays()//This method will change the date to all items.
+        {
+            int y;
+            int d;
+            int m;
+            cout<<"What day of the month is it? ";
+            cin>>d;
+            cout<<"What Month of the year is it? ";
+            cin>>m;
+            cout<<"What year is it? ";
+            cin>>y;
+            yeara=y;
+            daya =d;
+            montha= m;
+        }
+        string gettypeE(int T)
+        {
+            string type;
+            if (T == 1)
+            {
+                type="Mobile Phone";
+            }
+            else if (T == 2)
+            {
+                type="Computer";
+            }
+            else if (T == 3)
+            {
+                type="Television";
+            }
+            else if (T == 4)
+            {
+                type="Kitchen Appliance";
+            }
+            else if (T == 5)
+            {
+                type="Sound & Light";
+            }
+            else if (T == 6)
+            {
+                type="Entertainment";
+            }
+            return type;
+        }
+        string gettypeJ(int T)
+        {
+            string type;
+            if (T == 1)
+            {
+                type="Necklace";
+            }
+            else if (T == 2)
+            {
+                type="Chain";
+            }
+            else if (T == 3)
+            {
+                type="Tiara";
+            }
+            else if (T == 4)
+            {
+                type="Ring";
+            }
+            else if (T == 5)
+            {
+                type="Earring";
+            }
+            else if (T == 6)
+            {
+                type="Anklet";
+            }
+            return type;
+        }
 };
 class Pawn
 {
     private:
+        int year;
+        int day;
+        int month;
         int owner;
         int pawnid;
         double worth;
@@ -43,9 +124,20 @@ class Pawn
         double monthlypayment;
         bool status;
     public:
-        Pawn();// pawn constructor
+        Pawn(int yr,int dy,int mh,int own,int pid,double wh,double it,double bl,double mp,bool sts)// pawn constructor
+        {
+            year= yr;
+            day = dy;
+            month = mh;
+            owner= own;
+            pawnid= pid;
+            worth=wh;
+            interest= it;
+            balance=bl;
+            monthlypayment= mp;
+            status = sts;
+        }
         void intdayinc();// Increase of interest of item if data passes 30 days of pawn
-        void numdays();//This method will change the date to all items.
         void paypayment() // Pay payment to one item and remove from balance, claudia 
         {
             double pp;
@@ -67,7 +159,7 @@ class Jewelry: public Pawn
         double weight;
         string design;
     public:
-        Jewelry(string m, double w, string d)
+        Jewelry(int yr,int dy,int mh,int own,int pid,double wh,double it,double bl,double mp,bool sts,string m, double w, string d):Pawn(yr,dy,mh,own,pid, wh,it, bl, mp, sts)
         {
             material=m;
             weight=w;
@@ -81,7 +173,7 @@ class Electronic: public Pawn
         double timeusage;
         string type;
     public:
-        Electronic(double t, string typ)
+        Electronic(int yr,int dy,int mh,int own,int pid,double wh,double it,double bl,double mp,bool sts,double t, string typ):Pawn(yr,dy,mh,own,pid, wh,it, bl, mp, sts)
         {
             timeusage=t;
             type=typ;
@@ -96,46 +188,8 @@ Account::Account(string nm, int acc, string add, int ph, bool rec)
     record= rec;  
 }
 
-int Account::getid()
-{
-    int id;
-    id = accnum;
-    return id;
-}
 
-string Account::gettypeE(int T)
-{
-    string type;
-    if (T == 1)
-    {
-        type="Mobile Phone";
-    }
-    else if (T == 2)
-    {
-        type="Computer";
-    }
-    else if (T == 3)
-    {
-        type="Television";
-    }
-    else if (T == 4)
-    {
-        type="Kitchen Appliance";
-    }
-    else if (T == 5)
-    {
-        type="Security Appliance";
-    }
-    else if (T == 6)
-    {
-        type="Sound & Light";
-    }
-    else if (T == 7)
-    {
-        type="Entertainment";
-    }
-    return type;
-}
+
 
 void Account::makepawn(Account A)
 {
@@ -160,7 +214,7 @@ void Account::makepawn(Account A)
         string type;
         int ty;
         cout<<"Please enter the type of Electronic Item (1,2,3,4,5)...\n";
-        cout<<"\n1) Mobile Phone\n2) Computer\n3) Television\n4) Kitchen Appliance\n5) Security Appliance\n6) Network Tool\n7) Entertainment\n";
+        cout<<"\n1) Mobile Phone\n2) Computer\n3) Television\n4) Kitchen Appliance\n5) Network Tool\n6) Entertainment\n";
         cout<<"Type: ";
         cin>>ty;
         type = A.gettypeE(ty);
