@@ -250,28 +250,47 @@ class Pawn
             balance=0;
             status=false;
         }
-        void ShowPawnItem1()
+        string getstatus()
         {
-            cout<<"The Date of pawn is: "<<month<<" "<<day<<" "<<year<<endl;
+            //0= has been paid back(gone), 1= is being paid back, 2 = up for sale
+            string st;
+            if (status == 0)
+            {
+                st ="Active";
+            }
+            else if (status == 0)
+            {
+                st ="Inactive";
+            }
+            if (status == 0)
+            {
+                st ="Up For Sale";
+            }
+            return st;
+        }
+        void ShowPawnItem()
+        {
+            cout<<"The Pawn Item Information is Loading...\n";
             cout<<"The Owner of pawn is: "<<owner<<endl;
             cout<<"The Pawn ID is: "<<pawnid<<endl;
+            cout<<"The Date When Item was Pawned is: "<<day<<"/"<<month<<"/"<<year<<endl;
             cout<<"The Worth of the pawn is: "<<worth<<endl;
             cout<<"The Interest accumilated by pawn is: "<<interest<<endl;
             cout<<"The Balance is: "<<balance<<endl;
-            cout<<"The Staus of the pawn is: "<<status<<endl;
+            cout<<"The Staus of the pawn is: "<<getstatus()<<endl;
         }
 
 };
 class Jewelry: public Pawn
 {
     private:
-        string material;
+        int material;
         double weight;
         int design;
     public:
         void makepawn(int own);
         Jewelry();
-        void setjew(int yr,int dy,int mh,int own,int pid,double wh,double it,double bl,int sts,string m, double w, int d)
+        void setjew(int yr,int dy,int mh,int own,int pid,double wh,double it,double bl,int sts,int m, double w, int d)
         {
             Pawn::setPawn(yr,dy,mh,own,pid, wh,it, bl, sts);
             material=m;
@@ -307,17 +326,43 @@ class Jewelry: public Pawn
             }
             return des;
         }
+        string getmat(int T)
+        {
+            string mat;
+            if (T == 1)
+            {
+                mat="Gold";
+            }
+            else if (T == 2)
+            {
+                mat="Silver";
+            }
+            else if (T == 3)
+            {
+                mat="Pearl";
+            }
+            else if (T == 4)
+            {
+                mat="Stainless Steel";
+            }
+            else if (T == 5)
+            {
+                mat="Diamond";
+            }
+            return mat;
+        }
         int getid()
         {
             int idd;
             idd = Pawn::getid();
             return idd;
         }
-        void ShowPawnItem2()
+        void ShowPawnItem()
         {
-            cout<<"The Material of the item is: "<<material<<endl;
+            Pawn::ShowPawnItem();
+            cout<<"The Material of the item is: "<<getmat(material)<<endl;
             cout<<"The Weight of the item is: "<<weight<<endl;
-            cout<<"The Design of the item is: "<<design<<endl;
+            cout<<"The Design of the item is: "<<getdes(design)<<endl;
         }
 
 };
@@ -370,10 +415,11 @@ class Electronic: public Pawn
             }
             return type;
         }
-        void ShowPawnItem3()
+        void ShowPawnItem()
         {
+            Pawn::ShowPawnItem();
             cout<<"The Time Usage of the item is: "<<timeusage<<endl;
-            cout<<"The type of the item is: "<<type<<endl;
+            cout<<"The type of the item is: "<<gettypeE<<endl;
         }
 };
 void Pawn::makepawn(int own)
@@ -398,7 +444,7 @@ void Jewelry::makepawn(int own)
 {
     Pawn::makepawn(own);
     cout<<"Please enter the Material of Jewelry (1,2,3,4,5)...\n";
-    cout<<"\n1) Gold\n2) Silver\n3) Pearl\n4) Stainless Steel\n5) Combination";
+    cout<<"\n1) Gold\n2) Silver\n3) Pearl\n4) Stainless Steel\n5) Diamond";
     cout<<"Material: ";
     cin>>material;
     cout<<"Please enter the Material of Jewelry (1,2,3,4,5)...\n";
@@ -436,16 +482,17 @@ int main()
     acc[9].setAccount("Logan", 1009, "San Antonio Road", 5016789162, false);
     Jewelry jew[100];
     // order int yr,int dy,int mh,int own,int pid,double wh,double it,double bl,int sts,string m, double w, int d)
-    jew[0].setjew(2022,04,10,1001,1101,100.00,12.50,81.00,0, "Stainless Steal", 40.50, 4);
-    jew[1].setjew(2022,21,04,1003,1102,250.00,31.25,168.00,2, "Brazilian Gold", 250.00, 6);
-    jew[2].setjew(2022,10,9,1005,1103,325.00,40.60,127.00,1, "Silver", 30.50, 2);
-    jew[3].setjew(2022,19,12,1004,1104,475.00,59.40,225.00,0, "Gold", 372.00, 3);
-    jew[4].setjew(2022,25,07,1009,1105,500.00,62.50,300.00,1, "Diamond", 451.20, 4);
-    jew[5].setjew(2022,05,8,1002,1106,550.00,68.75,150.00,2, "Pearl", 3.65, 1);
-    jew[6].setjew(2022,12,01,1006,1107,450.00,56.25,185.00,2, "Gold", 350.50, 5);
-    jew[7].setjew(2022,27,06,1008,1108,375.00,46.90,132.00,0, "Silver", 27.50, 2);
-    jew[8].setjew(2022,30,03,1007,1109,200.00,25.00,90.00,2, "Brazilian Gold", 200.50, 6);
-    jew[9].setjew(2022,16,11,1005,1110,150.00,18.75,50.00,1, "Stainless Steal", 42.50, 1);
+    //cout<<"\n1) Gold\n2) Silver\n3) Pearl\n4) Stainless Steel\n5) Combination";
+    jew[0].setjew(2022,04,10,1001,1101,100.00,12.50,81.00,0, 4, 40.50, 4);
+    jew[1].setjew(2022,21,04,1003,1102,250.00,31.25,168.00,2, 1, 250.00, 6);
+    jew[2].setjew(2022,10,9,1005,1103,325.00,40.60,127.00,1, 2, 30.50, 2);
+    jew[3].setjew(2022,19,12,1004,1104,475.00,59.40,225.00,0, 1, 372.00, 3);
+    jew[4].setjew(2022,25,07,1009,1105,500.00,62.50,300.00,1, 5, 451.20, 4);
+    jew[5].setjew(2022,05,8,1002,1106,550.00,68.75,150.00,2, 3, 3.65, 1);
+    jew[6].setjew(2022,12,01,1006,1107,450.00,56.25,185.00,2, 1, 350.50, 5);
+    jew[7].setjew(2022,27,06,1008,1108,375.00,46.90,132.00,0, 2, 27.50, 2);
+    jew[8].setjew(2022,30,03,1007,1109,200.00,25.00,90.00,2,1, 200.50, 6);
+    jew[9].setjew(2022,16,11,1005,1110,150.00,18.75,50.00,1, 4, 42.50, 1);
     Electronic elc[100];
     // order int yr,int dy,int mh,int own,int pid,double wh,double it,double bl,int sts, double t, int typ
     elc[0].setelc(2022,02,05,1005,1201,500.00,62.50,300.00,0, 50.0, 1);
