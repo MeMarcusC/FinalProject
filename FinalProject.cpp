@@ -144,8 +144,15 @@ class Pawn
         void intdayinc(System S)// Increase of interest of item if data passes 30 days of pawn
         {
             int Y;
+            int M;
+            int D;
             Y= S.getY();
-            if (year )
+            M = S.getM();
+            D = S.getD();
+            if (year != Y )
+            {
+                
+            }
         }
         void paypayment() // Pay payment to one item and remove from balance, claudia 
         {
