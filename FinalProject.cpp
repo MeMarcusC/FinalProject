@@ -79,14 +79,14 @@ class Account
             phone= ph;
             record= rec;  
         }
-        void makepawn(Account A);
+        void makepawn(Account A, Pawn P);
         int getid()
         {       
             int id;
             id = accnum;
             return id;
         }
-        void CheckRecord()//
+        void ChangeRecord()//
         {
             string yn;
             cout<<"Does this Account have a good record? (y or n): ";
@@ -110,6 +110,54 @@ class Account
             {
                 cout<<"This Account has a Good Record, and Can be Trusted!";
             }
+        }
+};
+class Pawn
+{
+    private:
+        int year;
+        int day;
+        int month;
+        int owner;
+        int pawnid;
+        string name;
+        double worth;
+        double interest;
+        double balance;
+        double monthlypayment;
+        bool status;
+    public:
+        Pawn(int yr,int dy,int mh,int own,int pid,double wh,double it,double bl,double mp,bool sts,string nm)// pawn constructor
+        {
+            year= yr;
+            day = dy;
+            month = mh;
+            owner= own;
+            pawnid= pid;
+            worth=wh;
+            interest= it;
+            balance=bl;
+            monthlypayment= mp;
+            status = sts;
+            name = nm;
+        }
+        void intdayinc(System S)// Increase of interest of item if data passes 30 days of pawn
+        {
+            int Y;
+            Y= S.getY();
+            if (year )
+        }
+        void paypayment() // Pay payment to one item and remove from balance, claudia 
+        {
+            double pp;
+            cout<<"Please Enter How much you are going to pay.";
+            cin>>pp;
+            balance=balance-pp;
+        }
+        void forfeit()//Change the status (paid or in continuation) 
+        {
+            balance=0;
+            status=false;
         }
         string gettypeE(int T)
         {
@@ -169,54 +217,6 @@ class Account
             }
             return type;
         }
-};
-class Pawn
-{
-    private:
-        int year;
-        int day;
-        int month;
-        int owner;
-        int pawnid;
-        string name;
-        double worth;
-        double interest;
-        double balance;
-        double monthlypayment;
-        bool status;
-    public:
-        Pawn(int yr,int dy,int mh,int own,int pid,double wh,double it,double bl,double mp,bool sts,string nm)// pawn constructor
-        {
-            year= yr;
-            day = dy;
-            month = mh;
-            owner= own;
-            pawnid= pid;
-            worth=wh;
-            interest= it;
-            balance=bl;
-            monthlypayment= mp;
-            status = sts;
-            name = nm;
-        }
-        void intdayinc(System S)// Increase of interest of item if data passes 30 days of pawn
-        {
-            int Y;
-            Y= S.getY();
-            if (year )
-        }
-        void paypayment() // Pay payment to one item and remove from balance, claudia 
-        {
-            double pp;
-            cout<<"Please Enter How much you are going to pay."<<endl;
-            cin>>pp;
-            balance=balance-pp;
-        }
-        void changestatus()//Change the status (paid or in continuation) 
-        {
-            balance=0;
-            status=false;
-        }
 
 };
 class Jewelry: public Pawn
@@ -246,7 +246,7 @@ class Electronic: public Pawn
             type=typ;
         }
 };
-void Account::makepawn(Account A)
+void Account::makepawn(Account A, Pawn P)
 {
     int ans;
     int owner;
@@ -273,7 +273,7 @@ void Account::makepawn(Account A)
         cout<<"\n1) Mobile Phone\n2) Computer\n3) Television\n4) Kitchen Appliance\n5) Network Tool\n6) Entertainment\n";
         cout<<"Type: ";
         cin>>ty;
-        type = A.gettypeE(ty);
+        type = P.gettypeE(ty);
         cout<<"Please enter the Time Usage of the Item: ";
         cin>>timeusage;
         cout<<"Please enter the worth of the item: ";
