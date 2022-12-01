@@ -61,10 +61,25 @@ class System
             d = day;
             return d;
         }
+        void MakeNewAccount()
+        {
+            cout<<"\nWelcome to the The Pawn Champs Ltd.,Get Ready to Create an Account With Us"<<endl;
+            cout<<"What is Your Name?"<<endl;
+            cin>>nm;
+            cout<<"Please Enter Account Number"<<endl;
+            cin>>acc;
+            cout<<"Please Enter Your Address"<<endl;
+            cin>>add;
+            cout<<"Please Enter Your Phone Number"<<endl;
+            cin>>ph;
+            cout<<"Please Enter Record"<<endl;
+            cin>>rec;
+            Account = Account(nm, acc, add, ph, rec);
+        }
         int ShowMenu()
         {
             int choice;
-            cout << "\nWelcome to the The Pawn Champs Ltd., Please Enter Your Choice\n";
+            cout << "\nWelcome to the The Pawn Champs Ltd., Please Enter Your Choice\n"<<endl;
             cout << "1. To Create a Pawn "<<endl; 
             cout << "2. To Foriet a Pawn "<<endl;
             cout << "3. To Make Payment"<<endl;
@@ -74,6 +89,28 @@ class System
             cout << "7. To Exit"<<endl;
             cin>>choice;
             return choice;
+        }
+        void Decider()
+        {
+            Account P1;
+            Pawn P2;
+            while (choice !=7)
+            {
+                switch(choice)
+                {
+                    case 1:
+                        P1.makepawn
+                        break
+                    case 2:
+                        P2.forfeit
+                        break
+                    case 3:
+                        P2.paypayment
+                        break
+                    case 4:
+
+                }
+            }
         }
 };
 class Account
