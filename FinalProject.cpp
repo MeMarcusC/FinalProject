@@ -89,7 +89,7 @@ class System
                 switch(choice)
                 {
                     case 1:
-                        A.makepawn(A );
+                        A.makepawn(A);
                         break
                     case 2:
                         P.forfeit();
@@ -174,14 +174,14 @@ class Pawn
         int month;
         int owner;
         int pawnid;
-        string name;
+        
         double worth;
         double interest;
         double balance;
-        double monthlypayment;
-        bool status;
+        //double monthlypayment;
+        int status;//0= has been paid back(gone), 1= is being paid back, 2 = up for sale
     public:
-        Pawn(int yr,int dy,int mh,int own,int pid,double wh,double it,double bl,double mp,bool sts,string nm)// pawn constructor
+        void setPawn(int yr,int dy,int mh,int own,int pid,double wh,double it,double bl,int sts)// pawn constructor
         {
             year= yr;
             day = dy;
@@ -191,9 +191,8 @@ class Pawn
             worth=wh;
             interest= it;
             balance=bl;
-            monthlypayment= mp;
             status = sts;
-            name = nm;
+            
         }
         void intdayinc(System S)// Increase of interest of item if data passes 30 days of pawn
         {
@@ -248,42 +247,44 @@ class Jewelry: public Pawn
     private:
         string material;
         double weight;
-        string design;
+        int design;
     public:
-        Jewelry(int yr,int dy,int mh,int own,int pid,double wh,double it,double bl,double mp,bool sts,string nm,string m, double w, string d):Pawn(yr,dy,mh,own,pid, wh,it, bl, mp, sts,nm)
+        Jewelry();
+        void setjew(int yr,int dy,int mh,int own,int pid,double wh,double it,double bl,int sts,string m, double w, int d)
         {
+            Pawn::setPawn(yr,dy,mh,own,pid, wh,it, bl, sts);
             material=m;
             weight=w;
             design=d; 
         }
-        string gettypeJ(int T)
+        string getdes(int T)
         {
-            string type;
+            string des;
             if (T == 1)
             {
-                type="Necklace";
+                des="Necklace";
             }
             else if (T == 2)
             {
-                type="Chain";
+                des="Chain";
             }
             else if (T == 3)
             {
-                type="Tiara";
+                des="Tiara";
             }
             else if (T == 4)
             {
-                type="Ring";
+                des="Ring";
             }
             else if (T == 5)
             {
-                type="Earring";
+                des="Earring";
             }
             else if (T == 6)
             {
-                type="Anklet";
+                des="Anklet";
             }
-            return type;
+            return des;
         }
 
 };
@@ -293,8 +294,10 @@ class Electronic: public Pawn
         double timeusage;
         int type;
     public:
-        Electronic(int yr,int dy,int mh,int own,int pid,double wh,double it,double bl,double mp,bool sts,string nm, double t, int typ):Pawn(yr,dy,mh,own,pid, wh,it, bl, mp, sts, nm)
+        Electronic();
+        void setelc(int yr,int dy,int mh,int own,int pid,double wh,double it,double bl,int sts, double t, int typ)
         {
+            Pawn::setPawn(yr,dy,mh,own,pid, wh,it, bl, sts);
             timeusage=t;
             type=typ;
         }
@@ -386,5 +389,30 @@ int main()
     acc[7].setAccount("Marcus", 1000, "College Road", 5016072949, true);
     acc[8].setAccount("Marcus", 1000, "College Road", 5016072949, true);
     acc[9].setAccount("Marcus", 1000, "College Road", 5016072949, true);
+    Jewelry jew[100];
+    // order int yr,int dy,int mh,int own,int pid,double wh,double it,double bl,int sts,string m, double w, int d)
+    jew[0].setjew(2022,20,11,1000,1100,100.00,12.50,100.00,1, "Gold", 2.50, 1);
+    jew[0].setjew(2022,20,11,1000,1100,100.00,12.50,100.00,1, "Gold", 2.50, 1);
+    jew[0].setjew(2022,20,11,1000,1100,100.00,12.50,100.00,1, "Gold", 2.50, 1);
+    jew[0].setjew(2022,20,11,1000,1100,100.00,12.50,100.00,1, "Gold", 2.50, 1);
+    jew[0].setjew(2022,20,11,1000,1100,100.00,12.50,100.00,1, "Gold", 2.50, 1);
+    jew[0].setjew(2022,20,11,1000,1100,100.00,12.50,100.00,1, "Gold", 2.50, 1);
+    jew[0].setjew(2022,20,11,1000,1100,100.00,12.50,100.00,1, "Gold", 2.50, 1);
+    jew[0].setjew(2022,20,11,1000,1100,100.00,12.50,100.00,1, "Gold", 2.50, 1);
+    jew[0].setjew(2022,20,11,1000,1100,100.00,12.50,100.00,1, "Gold", 2.50, 1);
+    jew[0].setjew(2022,20,11,1000,1100,100.00,12.50,100.00,1, "Gold", 2.50, 1);
+    Electronic elc[100];
+    // order int yr,int dy,int mh,int own,int pid,double wh,double it,double bl,int sts, double t, int typ
+    elc[0].setelc(2022,20,11,1000,1100,100.00,12.50,100.00,1, 100.0, 1);
+    elc[0].setelc(2022,20,11,1000,1100,100.00,12.50,100.00,1, 100.0, 1);
+    elc[0].setelc(2022,20,11,1000,1100,100.00,12.50,100.00,1, 100.0, 1);
+    elc[0].setelc(2022,20,11,1000,1100,100.00,12.50,100.00,1, 100.0, 1);
+    elc[0].setelc(2022,20,11,1000,1100,100.00,12.50,100.00,1, 100.0, 1);
+    elc[0].setelc(2022,20,11,1000,1100,100.00,12.50,100.00,1, 100.0, 1);
+    elc[0].setelc(2022,20,11,1000,1100,100.00,12.50,100.00,1, 100.0, 1);
+    elc[0].setelc(2022,20,11,1000,1100,100.00,12.50,100.00,1, 100.0, 1);
+    elc[0].setelc(2022,20,11,1000,1100,100.00,12.50,100.00,1, 100.0, 1);
+    elc[0].setelc(2022,20,11,1000,1100,100.00,12.50,100.00,1, 100.0, 1);
+   
 
 }
