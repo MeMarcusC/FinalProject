@@ -92,8 +92,10 @@ class System
             cout << "4. To Make New Account"<<endl;
             cout << "5. To Change Account Status"<<endl;
             cout << "6. To Check Account Status"<<endl;
-            cout << "7. To Change Current Date"<<endl;
-            cout << "8. To Exit"<<endl;
+            cout << "7. To View the Information of Pawn Item"<<endl;
+            cout << "8. To View the Information of Costumer Account"<<endl;
+            cout << "9. To Change Current Date"<<endl;
+            cout << "10. To Exit"<<endl;
             cin>>choice;
             return choice;
         }
@@ -174,7 +176,7 @@ class Pawn
         //double monthlypayment;
         int status;//0= has been paid back(gone), 1= is being paid back, 2 = up for sale
     public:
-        void makepawn();
+        void makepawn(int own);
         void setPawn(int yr,int dy,int mh,int own,int pid,double wh,double it,double bl,int sts)// pawn constructor
         {
             year= yr;
@@ -249,7 +251,7 @@ class Jewelry: public Pawn
         double weight;
         int design;
     public:
-        void makepawn();
+        void makepawn(int own);
         Jewelry();
         void setjew(int yr,int dy,int mh,int own,int pid,double wh,double it,double bl,int sts,string m, double w, int d)
         {
@@ -301,7 +303,7 @@ class Electronic: public Pawn
         double timeusage;
         int type;
     public:
-        void makepawn();
+        void makepawn(int own);
         Electronic();
         int getid()
         {
@@ -345,43 +347,47 @@ class Electronic: public Pawn
             return type;
         }
 };
-void Pawn::makepawn()
+void Pawn::makepawn(int own)
 {
     /*
-    int owner;
-    int pawnid;
-    double worth;
-    double interest;
-    double balance;
-    double monthlypayment;
+  
     bool status;*/
     //owner = id;
-    cout<<"\n\nPlease enter the Pawn Item ID: ";
+    owner = own;
+    cout<<"Lets Get Started Creating A New Pawn Item!\n.....\n";
+    cout<<"\nPlease enter the Pawn Item ID: ";
     cin>>pawnid;
     cout<<"Please enter the worth of the item: ";
-        cin>>worth;
-
-   
-    double interest;
-    double balance;
-    double monthlypayment;
-    bool status;
+    cin>>worth;
+    int in;
+    in = worth *( 12.5/100);
+    interest = in;
+    balance = worth;
+    status = 1;
 }
-void Jewelry::makepawn()
+void Jewelry::makepawn(int own)
 {
-        double timeusage;
-        int ty;
-        cout<<"Please enter the type of Electronic Item (1,2,3,4,5)...\n";
-        cout<<"\n1) Mobile Phone\n2) Computer\n3) Television\n4) Kitchen Appliance\n5) Network Tool\n6) Entertainment\n";
-        cout<<"Type: ";
-        cin>>ty;
-        cout<<"Please enter the Time Usage of the Item: ";
-        cin>>timeusage;
-
+    Pawn::makepawn(own);
+    cout<<"Please enter the Material of Jewelry (1,2,3,4,5)...\n";
+    cout<<"\n1) Gold\n2) Silver\n3) Pearl\n4) Stainless Steel\n5) Combination";
+    cout<<"Material: ";
+    cin>>material;
+    cout<<"Please enter the Material of Jewelry (1,2,3,4,5)...\n";
+    cout<<"\n1) Necklace\n2) Chain\n3) Tiara\n4) Ring\n5) Earring\n6) Anklet";
+    cout<<"Design: ";
+    cin>>design;
+    cout<<"Please Specify the Weight of the Jewelry: ";
+    cin>>weight;  
 }
-void Electronic::makepawn()
+void Electronic::makepawn(int own)
 {
-
+    Pawn::makepawn(own);
+    cout<<"Please enter the type of Electronic Item (1,2,3,4,5)...\n";
+    cout<<"\n1) Mobile Phone\n2) Computer\n3) Television\n4) Kitchen Appliance\n5) Network Tool\n6) Entertainment\n";
+    cout<<"Type: ";
+    cin>>type;
+    cout<<"Please enter the Time Usage of the Item: ";
+    cin>>timeusage;
 }
 int main()
 {
@@ -431,11 +437,13 @@ int main()
             cout << "4. To Make New Account"<<endl;
             cout << "5. To Change Account Status"<<endl;
             cout << "6. To Check Account Status"<<endl;
-            cout << "7. To Change Current Date"<<endl;
-            cout << "8. To Exit"<<endl;
+            cout << "7. To View the Information of Pawn Item"<<endl;
+            cout << "8. To View the Information of Costumer Account"<<endl;
+            cout << "9. To Change Current Date"<<endl;
+            cout << "10. To Exit"<<endl;
     */
     ans = main.ShowMenu();
-    while (ans !=8)
+    while (ans !=10)
         {
             if (ans ==1)
             {
@@ -462,13 +470,13 @@ int main()
                             {
                                 int noid;
                                 noid = main.getelc();
-                                elc[noid].makepawn();
+                                elc[noid].makepawn(id);
                             }
                             else if (ans == 1)
                             {
                                 int noid;
                                 noid = main.getjew();
-                                jew[noid].makepawn();
+                                jew[noid].makepawn(id);
                             }
                         }
                         
@@ -593,7 +601,9 @@ int main()
                     }
                 }
             }
-            else if (ans == 7)
+            //
+            //
+            else if (ans == 9)
             {
                 main.numdays();
             }
