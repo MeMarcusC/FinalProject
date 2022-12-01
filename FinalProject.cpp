@@ -15,41 +15,101 @@ important. The program must use classes and objects. It must have a menu with al
 print all messages or instructions in a professional and user friendly manner.
 A user manual must be written with screenshots to describe its functionality to its users.
 */
+class System
+{
+    private:
+        int year;
+        int day;
+        int month;
+    public:;
+        System(int y, int d, int m)
+        {
+            year = y;
+            day = d;
+            month = m
+        }
+        void numdays()//This method will change the date to all items.
+            {
+                int y;
+                int d;
+                int m;
+                cout<<"What day of the month is it? ";
+                cin>>d;
+                cout<<"What Month of the year is it? ";
+                cin>>m;
+                cout<<"What year is it? ";
+                cin>>y;
+                year=y;
+                day =d;
+                month= m;
+            }
+        int getY()
+        {
+            int y;
+            y = year;
+            return y;
+        }
+        int getM()
+        {
+            int m;
+            m = month;
+            return m;
+        }
+        int getD()
+        {
+            int d;
+            d = day;
+            return d;
+        }
+};
 class Account
 {
     private:
-        int yeara;
-        int daya;
-        int montha;
         string name;
         int accnum;
         string address;
         int phone;
         bool record;
     public:
-        Account(string nm, int acc, string add, int ph, bool rec);
-        void makepawn(Account A );
+        Account(string nm, int acc, string add, int ph, bool rec)
+        {
+            name= nm;
+            accnum=acc;
+            address=add;
+            phone= ph;
+            record= rec;  
+        }
+        void makepawn(Account A);
         int getid()
         {       
             int id;
             id = accnum;
             return id;
         }
-        void CheckRecord();//
-        void numdays()//This method will change the date to all items.
+        void CheckRecord()//
         {
-            int y;
-            int d;
-            int m;
-            cout<<"What day of the month is it? ";
-            cin>>d;
-            cout<<"What Month of the year is it? ";
-            cin>>m;
-            cout<<"What year is it? ";
-            cin>>y;
-            yeara=y;
-            daya =d;
-            montha= m;
+            string yn;
+            cout<<"Does this Account have a good record? (y or n): ";
+            cin>>yn;
+            if (yn == "y")
+            {
+                record = true;
+            }
+            else if ( yn == "n")
+            {
+                record = false;
+            }
+        }
+        void CheckRecord()//
+        {
+            if (record == false)
+            {
+                cout<<"This Account has a Bad Record, and Can Not be Trusted!";
+            }
+            else if (record == false)
+            {
+                cout<<"This Account has a Good Record, and Can be Trusted!";
+            }
         }
         string gettypeE(int T)
         {
@@ -118,13 +178,14 @@ class Pawn
         int month;
         int owner;
         int pawnid;
+        string name;
         double worth;
         double interest;
         double balance;
         double monthlypayment;
         bool status;
     public:
-        Pawn(int yr,int dy,int mh,int own,int pid,double wh,double it,double bl,double mp,bool sts)// pawn constructor
+        Pawn(int yr,int dy,int mh,int own,int pid,double wh,double it,double bl,double mp,bool sts,string nm)// pawn constructor
         {
             year= yr;
             day = dy;
@@ -136,8 +197,14 @@ class Pawn
             balance=bl;
             monthlypayment= mp;
             status = sts;
+            name = nm;
         }
-        void intdayinc();// Increase of interest of item if data passes 30 days of pawn
+        void intdayinc(System S)// Increase of interest of item if data passes 30 days of pawn
+        {
+            int Y;
+            Y= S.getY();
+            if (year )
+        }
         void paypayment() // Pay payment to one item and remove from balance, claudia 
         {
             double pp;
@@ -159,7 +226,7 @@ class Jewelry: public Pawn
         double weight;
         string design;
     public:
-        Jewelry(int yr,int dy,int mh,int own,int pid,double wh,double it,double bl,double mp,bool sts,string m, double w, string d):Pawn(yr,dy,mh,own,pid, wh,it, bl, mp, sts)
+        Jewelry(int yr,int dy,int mh,int own,int pid,double wh,double it,double bl,double mp,bool sts,string nm,string m, double w, string d):Pawn(yr,dy,mh,own,pid, wh,it, bl, mp, sts,nm)
         {
             material=m;
             weight=w;
@@ -173,29 +240,18 @@ class Electronic: public Pawn
         double timeusage;
         string type;
     public:
-        Electronic(int yr,int dy,int mh,int own,int pid,double wh,double it,double bl,double mp,bool sts,double t, string typ):Pawn(yr,dy,mh,own,pid, wh,it, bl, mp, sts)
+        Electronic(int yr,int dy,int mh,int own,int pid,double wh,double it,double bl,double mp,bool sts,string nm, double t, string typ):Pawn(yr,dy,mh,own,pid, wh,it, bl, mp, sts, nm)
         {
             timeusage=t;
             type=typ;
         }
 };
-Account::Account(string nm, int acc, string add, int ph, bool rec)
-{
-    name= nm;
-    accnum=acc;
-    address=add;
-    phone= ph;
-    record= rec;  
-}
-
-
-
-
 void Account::makepawn(Account A)
 {
     int ans;
     int owner;
     int pawnid;
+    string name;
     double worth;
     double interest;
     double balance;
