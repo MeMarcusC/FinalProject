@@ -106,11 +106,11 @@ class Account
         string name;
         int accnum;
         string address;
-        int phone;
+        long int phone;
         bool record;
     public:
         Account();
-        void setAccount(string nm, int acc, string add, int ph, bool rec)
+        void setAccount(string nm, int acc, string add, long int ph, bool rec)
         {
             name= nm;
             accnum=acc;
@@ -218,7 +218,7 @@ class Pawn
                 dp = md * 30;
                
             }
-            else if (Yd = 0)
+            else if (Yd == 0)
             {
                 md = M- month;
                 dp = md *30;
@@ -418,8 +418,9 @@ class Electronic: public Pawn
         void ShowPawnItem()
         {
             Pawn::ShowPawnItem();
+            string ty = gettypeE(type);
             cout<<"The Time Usage of the item is: "<<timeusage<<endl;
-            cout<<"The type of the item is: "<<gettypeE<<endl;
+            cout<<"The type of the item is: "<<ty<<endl;
         }
 };
 void Pawn::makepawn(int own)
@@ -677,8 +678,52 @@ int main()
                     }
                 }
             }
-            //
-            //
+            else if(ans == 7)
+            {
+                int pid;
+                cout<<"Please enter the Pawn ID: ";
+                cin>>pid;
+                if ( pid >=1100 && pid<1200)
+                {
+                    for( int t = 0; t<101;t++)
+                    {
+                        int paid;
+                        paid = jew[t].getid();
+                        if( paid == pid)
+                        {
+                            jew[t].ShowPawnItem();
+                        }
+                    }
+                }
+                else if ( pid >=1200 && pid<1300)
+                {
+                    for( int t = 0; t<101;t++)
+                    {
+                        int paid;
+                        paid = elc[t].getid();
+                        if( paid == pid)
+                        {
+                            elc[t].ShowPawnItem();
+                        }
+                    }
+                }
+            }
+            
+            else if(ans == 8)
+            {
+                int id;
+                cout<<"Please enter the Costumer Account ID To Display Information: ";
+                cin>>id;
+                for( int i = 0; i<101;i++)
+                {
+                    int acid;
+                    acid = acc[i].getid();
+                    if( acid == id)
+                    {
+                        acc[i].ShowUserAccount();
+                    }
+                }
+            }
             else if (ans == 9)
             {
                 main.numdays();
