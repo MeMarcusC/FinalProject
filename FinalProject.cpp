@@ -224,16 +224,18 @@ class Pawn
             Y= S.getY();
             M = S.getM();
             D = S.getD();
+
+
             int Yd= Y-year;
             int sts = status; 
             if (status ==1 )
             {
+
             if (Yd >= 0 )
             {
                 M = M + (12 * Yd);
                 md = M - month;
-                dp = md * 30;
-               
+                dp = md * 30;               
             }
             else if (Yd == 0)
             {
@@ -862,12 +864,8 @@ int main()
                 {
                     jew[i].interestcheck(main);
                 }
-                for (int i = 0; i<100;i++)
-                {
-                    elc[i].interestcheck(main);
-                }
-                
             }
+
             ans = main.ShowMenu();
             for ( int p = 0; p<100;p++)
             {
