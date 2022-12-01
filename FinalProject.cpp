@@ -61,6 +61,18 @@ class System
             d = day;
             return d;
         }
+        void ShowMenu()
+        {
+            int choice
+            cout << "\nWelcome to the The Pawn Champs Ltd., Please Enter Your Choice\n";
+            cout << "1. To Create a Pawn "<<endl; 
+            cout << "2. To Foriet a Pawn "<<endl;
+            cout << "3. To Make Payment"<<endl;
+            cout << "4. To Make New Account"<<endl;
+            cout << "5. To Exit"<<endl;
+            cin>>choice
+
+        }
 };
 class Account
 {
