@@ -377,15 +377,15 @@ int main()
   // This is an array of objects having
   // maximum limit of 30 Employees
     Account acc[100];
-    acc[0].setAccount("Marcus", 1000, "College Road", 5016072949, true);
-    acc[1].setAccount("Marcus", 1000, "College Road", 5016072949, true);
-    acc[2].setAccount("Marcus", 1000, "College Road", 5016072949, true);
-    acc[3].setAccount("Marcus", 1000, "College Road", 5016072949, true);
-    acc[4].setAccount("Marcus", 1000, "College Road", 5016072949, true);
-    acc[5].setAccount("Marcus", 1000, "College Road", 5016072949, true);
-    acc[6].setAccount("Marcus", 1000, "College Road", 5016072949, true);
-    acc[7].setAccount("Marcus", 1000, "College Road", 5016072949, true);
-    acc[8].setAccount("Marcus", 1000, "College Road", 5016072949, true);
-    acc[9].setAccount("Marcus", 1000, "College Road", 5016072949, true);
+    acc[0].setAccount("Marcus", 1000, "College Road", 5016546541, true);
+    acc[1].setAccount("Alexis", 1001, "Cotton St.", 5016072949, false);
+    acc[2].setAccount("Riley", 1002, "5th Avenue", 5016555213, true);
+    acc[3].setAccount("Tamara", 1003, "10th Avenue North", 5016646548, true);
+    acc[4].setAccount("Richard", 1004, "Port Saul", 5016026483, false);
+    acc[5].setAccount("Evelyn", 1005, "Punta Gorda St.", 5016648922, true);
+    acc[6].setAccount("Derek", 1006, "1st Avenue", 5016481789, true);
+    acc[7].setAccount("Emma", 1007, "11 St. South", 5016416891, false);
+    acc[8].setAccount("Noah", 1008, "Rose St.", 5016789848, true);
+    acc[9].setAccount("Logan", 1009, "San Antonio Road", 5016789162, false);
 
 }
