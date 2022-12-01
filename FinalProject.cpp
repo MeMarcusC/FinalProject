@@ -61,17 +61,19 @@ class System
             d = day;
             return d;
         }
-        void ShowMenu()
+        int ShowMenu()
         {
-            int choice
+            int choice;
             cout << "\nWelcome to the The Pawn Champs Ltd., Please Enter Your Choice\n";
             cout << "1. To Create a Pawn "<<endl; 
             cout << "2. To Foriet a Pawn "<<endl;
             cout << "3. To Make Payment"<<endl;
             cout << "4. To Make New Account"<<endl;
-            cout << "5. To Exit"<<endl;
-            cin>>choice
-
+            cout << "5. To Change Account Status"<<endl;
+            cout << "6. To Change Current Date"<<endl;
+            cout << "7. To Exit"<<endl;
+            cin>>choice;
+            return choice;
         }
 };
 class Account
@@ -163,7 +165,7 @@ class Pawn
             D = S.getD();
             if (year != Y )
             {
-                
+
             }
         }
         void paypayment() // Pay payment to one item and remove from balance, claudia 
