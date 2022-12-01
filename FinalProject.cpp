@@ -2,37 +2,44 @@
 #include <cstring>
 
 using namespace std;
-/*
-The Pawn Champs Ltd. needs a program that will manage their transactions at the store. You were hired to develop such a 
-program using object oriented programming techniques using C++. A customer can come in and wish to pawn an item. 
-The item can be a piece of jewelry or an electronic item. You can consider using a class pawn that will contain all 
-the general characteristics (pawn number, balance, monthly payment etc) and methods that a regular pawn transaction 
-will possess. Methods can include paypayment, forfeitpawn etc. You can consider derived classes such as jewelrypawn 
-and electronicpawn. These classes will be derived from the pawn class.
-The program will implement this structure and allow for pawn transactions to be recorded. Also a customer can pay 
-monthly installments, forfeit a pawn and all the other methods you consider relevant or
-important. The program must use classes and objects. It must have a menu with all the options available. It must 
-print all messages or instructions in a professional and user friendly manner.
-A user manual must be written with screenshots to describe its functionality to its users.
-*/
 class System
 {
     private:
-        int na;//number of accounts
+        int noa;//number of accounts
+        int noj;
+        int noe;
         int year;
         int day;
         int month;
     public:;
-        System(int y, int d, int m)
+        System(int na,int nj,int ne,int yr,int d,int m)
         {
-            year = y;
+            noa = na;
+            noe = ne;
+            noj = nj;
+            year = yr;
             day = d;
             month = m;
+        }
+        int getjew()
+        {
+            int num;
+            num = noj + 1;
+            noj += 1;
+            return num;
+        }
+        int getelc()
+        {
+            int num;
+            num = noe + 1;
+            noe += 1;
+            return num;
         }
         int getacc()
         {
             int num;
-            num = na;
+            num = noa + 1;
+            noa += 1;
             return num;
         }
         void numdays()//This method will change the date to all items.
@@ -46,9 +53,16 @@ class System
                 cin>>m;
                 cout<<"What year is it? ";
                 cin>>y;
-                year=y;
-                day =d;
-                month= m;
+                cout<<"\nThe New date is "<<d<<"/"<<m<<"/"<<y<<endl;
+                string ok;
+                cout<<"Are you sure you wish to make changes? (y or n): ";
+                cin>> ok;
+                if ( ok == "y")
+                {
+                    year=y;
+                    day =d;
+                    month= m;
+                }
             }
         int getY()
         {
@@ -77,30 +91,11 @@ class System
             cout << "3. To Make Payment"<<endl;
             cout << "4. To Make New Account"<<endl;
             cout << "5. To Change Account Status"<<endl;
-            cout << "6. To Change Current Date"<<endl;
-            cout << "7. To Exit"<<endl;
+            cout << "6. To Check Account Status"<<endl;
+            cout << "7. To Change Current Date"<<endl;
+            cout << "8. To Exit"<<endl;
             cin>>choice;
             return choice;
-        }
-        void Decider(Account A,int choice, Pawn P)
-        {
-            while (choice !=7)
-            {
-                switch(choice)
-                {
-                    case 1:
-                        A.makepawn(A);
-                        break
-                    case 2:
-                        P.forfeit();
-                        break
-                    case 3:
-                        P.paypayment();
-                        break
-                    case 4:
-
-                }
-            }
         }
 };
 class Account
@@ -133,7 +128,6 @@ class Account
             cout<<"Please Enter Record"<<endl;
             cin>>record;
         }
-        void makepawn(Account A);
         int getid()
         {       
             int id;
@@ -174,13 +168,13 @@ class Pawn
         int month;
         int owner;
         int pawnid;
-        
         double worth;
         double interest;
         double balance;
         //double monthlypayment;
         int status;//0= has been paid back(gone), 1= is being paid back, 2 = up for sale
     public:
+        void makepawn();
         void setPawn(int yr,int dy,int mh,int own,int pid,double wh,double it,double bl,int sts)// pawn constructor
         {
             year= yr;
@@ -228,6 +222,12 @@ class Pawn
                 balance = balance + (interest * nm);
             }
         }
+        int getid()
+        {
+            int gid;
+            gid = pawnid;
+            return gid;
+        }
         void paypayment() // Pay payment to one item and remove from balance, claudia 
         {
             double pp;
@@ -249,6 +249,7 @@ class Jewelry: public Pawn
         double weight;
         int design;
     public:
+        void makepawn();
         Jewelry();
         void setjew(int yr,int dy,int mh,int own,int pid,double wh,double it,double bl,int sts,string m, double w, int d)
         {
@@ -286,6 +287,12 @@ class Jewelry: public Pawn
             }
             return des;
         }
+        int getid()
+        {
+            int idd;
+            idd = Pawn::getid();
+            return idd;
+        }
 
 };
 class Electronic: public Pawn
@@ -294,7 +301,14 @@ class Electronic: public Pawn
         double timeusage;
         int type;
     public:
+        void makepawn();
         Electronic();
+        int getid()
+        {
+            int idd;
+            idd = Pawn::getid();
+            return idd;
+        }
         void setelc(int yr,int dy,int mh,int own,int pid,double wh,double it,double bl,int sts, double t, int typ)
         {
             Pawn::setPawn(yr,dy,mh,own,pid, wh,it, bl, sts);
@@ -331,26 +345,30 @@ class Electronic: public Pawn
             return type;
         }
 };
-void Account::makepawn(Account A)
+void Pawn::makepawn()
 {
-    int ans;
+    /*
     int owner;
     int pawnid;
-    string name;
     double worth;
     double interest;
     double balance;
     double monthlypayment;
-    bool status;
-    owner = A.getid();
+    bool status;*/
+    //owner = id;
     cout<<"\n\nPlease enter the Pawn Item ID: ";
     cin>>pawnid;
-    cout<<"Please choose the type of item wished to be pawn (1 or 2).\n";
-    cout<<"\n1) Electronic Item\n2) Jewelry\n";
-    cout<<"Item: ";
-    cin>>ans;
-    if (ans == 1)
-    {
+    cout<<"Please enter the worth of the item: ";
+        cin>>worth;
+
+   
+    double interest;
+    double balance;
+    double monthlypayment;
+    bool status;
+}
+void Jewelry::makepawn()
+{
         double timeusage;
         int ty;
         cout<<"Please enter the type of Electronic Item (1,2,3,4,5)...\n";
@@ -359,25 +377,17 @@ void Account::makepawn(Account A)
         cin>>ty;
         cout<<"Please enter the Time Usage of the Item: ";
         cin>>timeusage;
-        cout<<"Please enter the worth of the item: ";
-        cin>>worth;
 
-    }
-    else if (ans == 2)
-    {
+}
+void Electronic::makepawn()
+{
 
-    }
-
-   
-    double interest;
-    double balance;
-    double monthlypayment;
-    bool status;
 }
 int main()
 {
   // This is an array of objects having
   // maximum limit of 30 Employees
+    System main = System(9,9,9,2022,1,12);
     Account acc[100];
     acc[0].setAccount("Marcus", 1000, "College Road", 5016546541, true);
     acc[1].setAccount("Alexis", 1001, "Cotton St.", 5016072949, false);
@@ -413,5 +423,182 @@ int main()
     elc[0].setelc(2022,20,11,1000,1100,100.00,12.50,100.00,1, 100.0, 1);
     elc[0].setelc(2022,20,11,1000,1100,100.00,12.50,100.00,1, 100.0, 1);
     elc[0].setelc(2022,20,11,1000,1100,100.00,12.50,100.00,1, 100.0, 1);
-
+    int ans;
+    /*cout << "\nWelcome to the The Pawn Champs Ltd., Please Enter Your Choice\n"<<endl;
+            cout << "1. To Create a Pawn "<<endl; 
+            cout << "2. To Foriet a Pawn "<<endl;
+            cout << "3. To Make Payment"<<endl;
+            cout << "4. To Make New Account"<<endl;
+            cout << "5. To Change Account Status"<<endl;
+            cout << "6. To Check Account Status"<<endl;
+            cout << "7. To Change Current Date"<<endl;
+            cout << "8. To Exit"<<endl;
+    */
+    ans = main.ShowMenu();
+    while (ans !=8)
+        {
+            if (ans ==1)
+            {
+                int id;
+                cout<<"Please enter the Costumer Account ID: ";
+                cin>>id;
+                for( int i = 0; i<101;i++)
+                {
+                    int acid;
+                    acid = acc[i].getid();
+                    if( acid == id)
+                    {
+                        acc[i].CheckRecord();
+                        string an;
+                        cout<<"Do you want to continue? (y or n) : ";
+                        cin>>an;
+                        if (an == "y")
+                        {
+                            cout<<"Please choose the type of item wished to be pawn (1 or 2).\n";
+                            cout<<"\n1) Electronic Item\n2) Jewelry\n";
+                            cout<<"Item: ";
+                            cin>>ans;
+                            if (ans == 1)
+                            {
+                                int noid;
+                                noid = main.getelc();
+                                elc[noid].makepawn();
+                            }
+                            else if (ans == 1)
+                            {
+                                int noid;
+                                noid = main.getjew();
+                                jew[noid].makepawn();
+                            }
+                        }
+                        
+                    }
+                }
+            }
+            else if (ans == 2) 
+            {
+                int id;
+                cout<<"Please enter the Costumer Account ID: ";
+                cin>>id;
+                int pid;
+                cout<<"Please enter the Pawn ID: ";
+                cin>>pid;
+                for( int i = 0; i<101;i++)
+                {
+                    int acid;
+                    acid = acc[i].getid();
+                    if( acid == id)
+                    {
+                        if ( pid >=1100 && pid<1200)
+                        {
+                            for( int t = 0; t<101;t++)
+                            {
+                                int paid;
+                                paid = jew[t].getid();
+                                if( paid == pid)
+                                {
+                                    jew[t].forfeit();
+                                }
+                            }
+                        }
+                        else if ( pid >=1200 && pid<1300)
+                        {
+                            for( int t = 0; t<101;t++)
+                            {
+                                int paid;
+                                paid = elc[t].getid();
+                                if( paid == pid)
+                                {
+                                    elc[t].forfeit();
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            else if (ans == 3)
+            {
+                int id;
+                cout<<"Please enter the Costumer Account ID: ";
+                cin>>id;
+                int pid;
+                cout<<"Please enter the Pawn ID: ";
+                cin>>pid;
+                for( int i = 0; i<101;i++)
+                {
+                    int acid;
+                    acid = acc[i].getid();
+                    if( acid == id)
+                    {
+                        if ( pid >=1100 && pid<1200)
+                        {
+                            for( int t = 0; t<101;t++)
+                            {
+                                int paid;
+                                paid = jew[t].getid();
+                                if( paid == pid)
+                                {
+                                    jew[t].paypayment();
+                                }
+                            }
+                        }
+                        else if ( pid >=1200 && pid<1300)
+                        {
+                            for( int t = 0; t<101;t++)
+                            {
+                                int paid;
+                                paid = elc[t].getid();
+                                if( paid == pid)
+                                {
+                                    elc[t].paypayment();
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            else if (ans == 4)
+            {
+                int id;
+                id = main.getacc();
+                acc[id].MakeNewAccount();
+            }
+            else if (ans == 5)
+            {
+                int id;
+                cout<<"Please enter the Costumer Account ID for status to be changed: ";
+                cin>>id;
+                for( int i = 0; i<101;i++)
+                {
+                    int acid;
+                    acid = acc[i].getid();
+                    if( acid == id)
+                    {
+                        acc[i].ChangeRecord();
+                    }
+                }
+            }
+            else if (ans == 6)
+            {
+                int id;
+                cout<<"Please enter the Costumer Account ID for status to be checked: ";
+                cin>>id;
+                for( int i = 0; i<101;i++)
+                {
+                    int acid;
+                    acid = acc[i].getid();
+                    if( acid == id)
+                    {
+                        acc[i].CheckRecord();
+                    }
+                }
+            }
+            else if (ans == 7)
+            {
+                main.numdays();
+            }
+            ans = main.ShowMenu();
+        }
+        
+    
 }
