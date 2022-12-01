@@ -18,6 +18,7 @@ A user manual must be written with screenshots to describe its functionality to 
 class System
 {
     private:
+        int na;//number of accounts
         int year;
         int day;
         int month;
@@ -26,7 +27,7 @@ class System
         {
             year = y;
             day = d;
-            month = m
+            month = m;
         }
         void numdays()//This method will change the date to all items.
             {
@@ -85,7 +86,8 @@ class Account
         int phone;
         bool record;
     public:
-        Account(string nm, int acc, string add, int ph, bool rec)
+        Account();
+        void setAccount(string nm, int acc, string add, int ph, bool rec)
         {
             name= nm;
             accnum=acc;
@@ -160,12 +162,33 @@ class Pawn
             int Y;
             int M;
             int D;
+            int dp;//of
+            int md;
+            int dd;
             Y= S.getY();
             M = S.getM();
             D = S.getD();
-            if (year != Y )
-            {
+            int Yd= Y-year;
 
+            if (Yd >= 0 )
+            {
+                M = M + (12 * Yd);
+                md = M - month;
+                dp = md * 30;
+               
+            }
+            else if (Yd = 0)
+            {
+                md = M- month;
+                dp = md *30;
+            }
+            dd = D-day;
+            dp = dp + dd;
+            if ( dp >= 30)
+            {
+                int nm;
+                nm = dp/30;
+                balance = balance + (interest * nm);
             }
         }
         void paypayment() // Pay payment to one item and remove from balance, claudia 
@@ -311,4 +334,21 @@ void Account::makepawn(Account A, Pawn P)
     double balance;
     double monthlypayment;
     bool status;
+}
+int main()
+{
+  // This is an array of objects having
+  // maximum limit of 30 Employees
+    Account acc[100];
+    acc[0].setAccount("Marcus", 1000, "College Road", 5016072949, true);
+    acc[1].setAccount("Marcus", 1000, "College Road", 5016072949, true);
+    acc[2].setAccount("Marcus", 1000, "College Road", 5016072949, true);
+    acc[3].setAccount("Marcus", 1000, "College Road", 5016072949, true);
+    acc[4].setAccount("Marcus", 1000, "College Road", 5016072949, true);
+    acc[5].setAccount("Marcus", 1000, "College Road", 5016072949, true);
+    acc[6].setAccount("Marcus", 1000, "College Road", 5016072949, true);
+    acc[7].setAccount("Marcus", 1000, "College Road", 5016072949, true);
+    acc[8].setAccount("Marcus", 1000, "College Road", 5016072949, true);
+    acc[9].setAccount("Marcus", 1000, "College Road", 5016072949, true);
+
 }
