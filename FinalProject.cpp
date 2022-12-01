@@ -29,6 +29,12 @@ class System
             day = d;
             month = m;
         }
+        int getacc()
+        {
+            int num;
+            num = na;
+            return num;
+        }
         void numdays()//This method will change the date to all items.
             {
                 int y;
@@ -62,21 +68,6 @@ class System
             d = day;
             return d;
         }
-        void MakeNewAccount()
-        {
-            cout<<"\nWelcome to the The Pawn Champs Ltd.,Get Ready to Create an Account With Us"<<endl;
-            cout<<"What is Your Name?"<<endl;
-            cin>>nm;
-            cout<<"Please Enter Account Number"<<endl;
-            cin>>acc;
-            cout<<"Please Enter Your Address"<<endl;
-            cin>>add;
-            cout<<"Please Enter Your Phone Number"<<endl;
-            cin>>ph;
-            cout<<"Please Enter Record"<<endl;
-            cin>>rec;
-            Account = Account(nm, acc, add, ph, rec);
-        }
         int ShowMenu()
         {
             int choice;
@@ -91,22 +82,20 @@ class System
             cin>>choice;
             return choice;
         }
-        void Decider()
+        void Decider(Account A,int choice, Pawn P)
         {
-            Account P1;
-            Pawn P2;
             while (choice !=7)
             {
                 switch(choice)
                 {
                     case 1:
-                        P1.makepawn
+                        A.makepawn(A );
                         break
                     case 2:
-                        P2.forfeit
+                        P.forfeit();
                         break
                     case 3:
-                        P2.paypayment
+                        P.paypayment();
                         break
                     case 4:
 
@@ -132,7 +121,19 @@ class Account
             phone= ph;
             record= rec;  
         }
-        void makepawn(Account A, Pawn P);
+        void MakeNewAccount()
+        {
+            cout<<"\nWelcome to the The Pawn Champs Ltd.,Get Ready to Create an Account With Us"<<endl;
+            cout<<"What is Your Name?"<<endl;
+            cin>>name;
+            cout<<"Please Enter Your Address"<<endl;
+            cin>>address;
+            cout<<"Please Enter Your Phone Number"<<endl;
+            cin>>phone;
+            cout<<"Please Enter Record"<<endl;
+            cin>>record;
+        }
+        void makepawn(Account A);
         int getid()
         {       
             int id;
@@ -240,34 +241,20 @@ class Pawn
             balance=0;
             status=false;
         }
-        string gettypeE(int T)
+
+};
+class Jewelry: public Pawn
+{
+    private:
+        string material;
+        double weight;
+        string design;
+    public:
+        Jewelry(int yr,int dy,int mh,int own,int pid,double wh,double it,double bl,double mp,bool sts,string nm,string m, double w, string d):Pawn(yr,dy,mh,own,pid, wh,it, bl, mp, sts,nm)
         {
-            string type;
-            if (T == 1)
-            {
-                type="Mobile Phone";
-            }
-            else if (T == 2)
-            {
-                type="Computer";
-            }
-            else if (T == 3)
-            {
-                type="Television";
-            }
-            else if (T == 4)
-            {
-                type="Kitchen Appliance";
-            }
-            else if (T == 5)
-            {
-                type="Sound & Light";
-            }
-            else if (T == 6)
-            {
-                type="Entertainment";
-            }
-            return type;
+            material=m;
+            weight=w;
+            design=d; 
         }
         string gettypeJ(int T)
         {
@@ -300,34 +287,48 @@ class Pawn
         }
 
 };
-class Jewelry: public Pawn
-{
-    private:
-        string material;
-        double weight;
-        string design;
-    public:
-        Jewelry(int yr,int dy,int mh,int own,int pid,double wh,double it,double bl,double mp,bool sts,string nm,string m, double w, string d):Pawn(yr,dy,mh,own,pid, wh,it, bl, mp, sts,nm)
-        {
-            material=m;
-            weight=w;
-            design=d; 
-        }
-
-};
 class Electronic: public Pawn
 {
     private:
         double timeusage;
-        string type;
+        int type;
     public:
-        Electronic(int yr,int dy,int mh,int own,int pid,double wh,double it,double bl,double mp,bool sts,string nm, double t, string typ):Pawn(yr,dy,mh,own,pid, wh,it, bl, mp, sts, nm)
+        Electronic(int yr,int dy,int mh,int own,int pid,double wh,double it,double bl,double mp,bool sts,string nm, double t, int typ):Pawn(yr,dy,mh,own,pid, wh,it, bl, mp, sts, nm)
         {
             timeusage=t;
             type=typ;
         }
+        string gettypeE(int T)
+        {
+            string type;
+            if (T == 1)
+            {
+                type="Mobile Phone";
+            }
+            else if (T == 2)
+            {
+                type="Computer";
+            }
+            else if (T == 3)
+            {
+                type="Television";
+            }
+            else if (T == 4)
+            {
+                type="Kitchen Appliance";
+            }
+            else if (T == 5)
+            {
+                type="Sound & Light";
+            }
+            else if (T == 6)
+            {
+                type="Entertainment";
+            }
+            return type;
+        }
 };
-void Account::makepawn(Account A, Pawn P)
+void Account::makepawn(Account A)
 {
     int ans;
     int owner;
@@ -348,13 +349,11 @@ void Account::makepawn(Account A, Pawn P)
     if (ans == 1)
     {
         double timeusage;
-        string type;
         int ty;
         cout<<"Please enter the type of Electronic Item (1,2,3,4,5)...\n";
         cout<<"\n1) Mobile Phone\n2) Computer\n3) Television\n4) Kitchen Appliance\n5) Network Tool\n6) Entertainment\n";
         cout<<"Type: ";
         cin>>ty;
-        type = P.gettypeE(ty);
         cout<<"Please enter the Time Usage of the Item: ";
         cin>>timeusage;
         cout<<"Please enter the worth of the item: ";
