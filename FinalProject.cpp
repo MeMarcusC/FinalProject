@@ -159,6 +159,14 @@ class Account
                 cout<<"This Account has a Good Record, and Can be Trusted!";
             }
         }
+        void ShowUserAccount()
+        {
+            cout<<"The Users Name is: "<<name<<endl;
+            cout<<"The Users Account Number is: "<<accnum<<endl;
+            cout<<"The Users Address is: "<<address<<endl;
+            cout<<"The Users Phone Number is: "<<phone<<endl;
+            cout<<"The Users Record is: "<<record<<endl;
+        }
 };
 class Pawn
 {
@@ -240,6 +248,16 @@ class Pawn
             balance=0;
             status=false;
         }
+        void ShowPawnItem1()
+        {
+            cout<<"The Date of pawn is: "<<month<<" "<<day<<" "<<year<<endl;
+            cout<<"The Owner of pawn is: "<<owner<<endl;
+            cout<<"The Pawn ID is: "<<pawnid<<endl;
+            cout<<"The Worth of the pawn is: "<<worth<<endl;
+            cout<<"The Interest accumilated by pawn is: "<<interest<<endl;
+            cout<<"The Balance is: "<<balance<<endl;
+            cout<<"The Staus of the pawn is: "<<status<<endl;
+        }
 
 };
 class Jewelry: public Pawn
@@ -293,6 +311,12 @@ class Jewelry: public Pawn
             idd = Pawn::getid();
             return idd;
         }
+        void ShowPawnItem2()
+        {
+            cout<<"The Material of the item is: "<<material<<endl;
+            cout<<"The Weight of the item is: "<<weight<<endl;
+            cout<<"The Design of the item is: "<<design<<endl;
+        }
 
 };
 class Electronic: public Pawn
@@ -343,6 +367,11 @@ class Electronic: public Pawn
                 type="Entertainment";
             }
             return type;
+        }
+        void ShowPawnItem3()
+        {
+            cout<<"The Time Usage of the item is: "<<timeusage<<endl;
+            cout<<"The type of the item is: "<<type<<endl;
         }
 };
 void Pawn::makepawn()
