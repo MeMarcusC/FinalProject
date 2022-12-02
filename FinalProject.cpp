@@ -673,6 +673,8 @@ int main()
                                 if( paid == pawnid)
                                 {
                                     jew[t].forfeit();
+                                    cout<<"\n\n***************************************************\n\n";
+                                    cout<<"The Account Id "<<costumerid<<" Has Succesfully Forfeited The Pawn "<<pawnid<<"\n";
                                     break;
                                 }
                             }
@@ -686,10 +688,21 @@ int main()
                                 if( paid == pawnid)
                                 {
                                     elc[t].forfeit();
+                                    cout<<"\n\n***************************************************\n\n";
+                                    cout<<"The Account Id "<<costumerid<<" Has Succesfully Forfeited The Pawn "<<pawnid<<"\n";
                                     break;
                                 }
                             }
                         }
+                        else
+                        {
+                            cout<<"Error\n";
+                            break;
+                        }
+                    }
+                    else
+                    {
+                        break;
                     }
                 }
             }
