@@ -541,11 +541,7 @@ int main()
     {
         elc[i].check();
     }
-    for ( int t = 0; t<100;t++)
-    {
-        jew[t].check();
-    }
-    
+
     int ans;
     ans = main.ShowMenu();
     while (ans !=10)
@@ -656,39 +652,41 @@ int main()
             }
             else if (ans == 2) 
             {
-                int id;
+                int costumerid;
                 cout<<"Please enter the Costumer Account ID: ";
-                cin>>id;
-                int pid;
+                cin>>costumerid;
+                int pawnid;
                 cout<<"Please enter the Pawn ID: ";
-                cin>>pid;
+                cin>>pawnid;
                 for( int i = 0; i<101;i++)
                 {
                     int acid;
                     acid = acc[i].getid();
-                    if( acid == id)
+                    if( acid == costumerid)
                     {
-                        if ( pid >=1100 && pid<1200)
+                        if ( pawnid >=1100 && pawnid<1200)
                         {
                             for( int t = 0; t<101;t++)
                             {
                                 int paid;
                                 paid = jew[t].getid();
-                                if( paid == pid)
+                                if( paid == pawnid)
                                 {
                                     jew[t].forfeit();
+                                    break;
                                 }
                             }
                         }
-                        else if ( pid >=1200 && pid<1300)
+                        else if ( pawnid >=1200 && pawnid<1300)
                         {
                             for( int t = 0; t<101;t++)
                             {
                                 int paid;
                                 paid = elc[t].getid();
-                                if( paid == pid)
+                                if( paid == pawnid)
                                 {
                                     elc[t].forfeit();
+                                    break;
                                 }
                             }
                         }
