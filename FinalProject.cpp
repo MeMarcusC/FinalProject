@@ -321,12 +321,12 @@ class Pawn
             st = getstatus();
             cout<<"\n***************************************************\n\n";
             cout<<"The Pawn Item Information is Loading...\n";
-            cout<<"The Owner of pawn is: "<<owner<<endl;
+            cout<<"\nThe Owner of pawn is: "<<owner<<endl;
             cout<<"The Pawn ID is: "<<pawnid<<endl;
             cout<<"The Date When Item was Pawned is: "<<day<<"/"<<month<<"/"<<year<<endl;
-            cout<<"The Worth of the pawn is: "<<worth<<endl;
-            cout<<"The Interest accumilated by pawn is: "<<interest<<endl;
-            cout<<"The Balance is: "<<balance<<endl;
+            cout<<"The Worth of the pawn is: $"<<worth<<endl;
+            cout<<"The Set Amount Interest of the pawn is: $"<<interest<<endl;
+            cout<<"The Balance is: $"<<balance<<endl;
             cout<<"The Status of the pawn is: "<<st<<endl;
         }
 
@@ -424,7 +424,7 @@ class Jewelry: public Pawn
             des = getdes(design);
             Pawn::ShowPawnItem();
             cout<<"The Material of the item is: "<<mat<<endl;
-            cout<<"The Weight of the item is: "<<weight<<endl;
+            cout<<"The Weight of the item is: "<<weight<<" grams\n";
             cout<<"The Design of the item is: "<<des<<endl;
         }
 
@@ -551,6 +551,8 @@ int main()
                 int id;
                 cout<<"Please enter the Costumer Account ID: ";
                 cin>>id;
+                if (id >=1000 && id <=1100)
+                {
                 for( int i = 0; i<101;i++)
                 {
                     int acid;
@@ -574,13 +576,13 @@ int main()
                             int m;
                             cout<<"\n***************************************************\n";
                             cout<<"\nLets Get Started Creating A New Pawn Item!\n.....\n";
-                            cout<<"Please enter the current year : ";
+                            cout<<"\nPlease enter the current year (yyyy): ";
                             cin>>yr;
-                            cout<<"Please enter the current month : ";
+                            cout<<"Please enter the current month (mm): ";
                             cin>>m;
-                            cout<<"Please enter the current day : ";
+                            cout<<"Please enter the current day (dd): ";
                             cin>>d;
-                            cout<<"Please enter the worth of the item: ";
+                            cout<<"\nPlease enter the worth of the item: ";
                             cin>>worth;
                             double inter;
                             inter = worth *( 12.5/100);
@@ -606,7 +608,7 @@ int main()
                                 cout<<"\nType: ";
                                 cin>>type;
                                 cout<<"\n***************************************************\n\n";
-                                cout<<"Please enter the Time Usage of the Item: ";
+                                cout<<"Please enter the Time Usage of the Item (hours.minutes): ";
                                 cin>>timeusage;
                                 cout<<"\n***************************************************\n";
                                 cout<<"The Pawn Item ID Is : "<<hun;
@@ -633,7 +635,7 @@ int main()
                                 cout<<"\nDesign: ";
                                 cin>>design;
                                 cout<<"\n***************************************************\n\n";
-                                cout<<"Please Specify the Weight of the Jewelry: ";
+                                cout<<"Please Specify the Weight of the Jewelry (grams): ";
                                 cin>>weight; 
                                 cout<<"\n***************************************************\n";
                                 cout<<"The Pawn Item ID Is : "<<hun;
@@ -642,12 +644,21 @@ int main()
                             }
                             else
                             {
-                                cout<<"Error!\n";
+                                break;
                             }
                             
                         }
+                        else
+                        {
+                            cout<<"Error!\n";
+                        }
                         
                     }
+                }
+                }
+                else
+                {
+                    cout<<"Error!";
                 }
             }
             else if (ans == 2) 
