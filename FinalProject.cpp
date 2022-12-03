@@ -787,7 +787,7 @@ int main()
                     k = true;
                 }
                 acc[id].setAccount(nm, l, ads, ph, k);
-
+                cout<<"\n The Account Has Been Created!\n";
             }
             else if (ans == 5)
             {
